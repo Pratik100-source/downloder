@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const youtubedl = require("youtube-dl-exec");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.port || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -63,7 +63,7 @@ app.get("/download/:formatId", async (req, res) => {
     });
 
     const selectedFormat = videoInfo.formats.find(
-      (f) => f.format_id === formatId
+      (f) => f.format_id === formatId,
     );
     if (!selectedFormat)
       return res.status(404).json({ error: "Format not found" });
