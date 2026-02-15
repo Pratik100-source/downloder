@@ -21,6 +21,7 @@ app.post("/video-info", async (req, res) => {
       noWarnings: true,
       preferFreeFormats: true,
       addHeader: ["referer:youtube.com", "user-agent:googlebot"],
+      exec: "yt-dlp", // ✅ use system yt-dlp from pip
     });
 
     const availableFormats = (video.formats || [])
